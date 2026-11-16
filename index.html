@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPACIUM-G SEVENGER | Monitoring Robot Tank</title>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <h1>SPACIUM-G SEVENGER</h1>
+        <p class="subtitle">Monitoring Robot Tank & Deteksi Kebakaran (MQTT)</p>
+      </div>
+      <div class="badges">
+        <span id="badge-broker" class="badge badge-offline">Broker: Disconnected</span>
+        <span id="badge-esp" class="badge badge-offline">ESP32: Offline</span>
+      </div>
+    </header>
+
+    <!-- Banner Status Utama -->
+    <section id="status-banner" class="banner banner-normal">
+      <div>
+        <span class="label-small">STATUS SISTEM</span>
+        <h2 id="status-title">NORMAL</h2>
+        <p id="status-desc">Lingkungan aman. Buzzer tidak aktif.</p>
+      </div>
+      <div class="last-update">
+        <span class="label-small">PEMBARUAN TERAKHIR</span>
+        <strong id="last-time">--:--:--</strong>
+      </div>
+    </section>
+
+    <!-- Grid 8 Kartu Informasi -->
+    <section class="grid">
+      <div class="card" id="card-api">
+        <div class="name">Status Api</div>
+        <div class="value" id="val-api">--</div>
+        <div class="hint">Flame Sensor (GPIO 35)</div>
+      </div>
+
+      <div class="card" id="card-buzzer">
+        <div class="name">Buzzer Alarm</div>
+        <div class="value" id="val-buzzer">--</div>
+        <div class="hint">Pin GPIO 23</div>
+      </div>
+
+      <div class="card">
+        <div class="name">Suhu Udara</div>
+        <div class="value" id="val-suhu">--</div>
+        <div class="hint">Sensor DHT22</div>
+      </div>
+
+      <div class="card">
+        <div class="name">Kelembapan</div>
+        <div class="value" id="val-hum">--</div>
+        <div class="hint">Sensor DHT22</div>
+      </div>
+
+      <div class="card" id="card-gas">
+        <div class="name">Gas / Asap (MQ-2)</div>
+        <div class="value" id="val-gas">--</div>
+        <div class="hint">Ambang Waspada: 1800 ADC</div>
+      </div>
+
+      <div class="card">
+        <div class="name">Jarak Halangan</div>
+        <div class="value" id="val-jarak">--</div>
+        <div class="hint">Ultrasonik HY-SRF05</div>
+      </div>
+
+      <div class="card">
+        <div class="name">Gerakan Robot</div>
+        <div class="value" id="val-gerak">--</div>
+        <div class="hint">Kendali Aktif via Blynk</div>
+      </div>
+
+      <div class="card">
+        <div class="name">Koneksi Blynk</div>
+        <div class="value" id="val-blynk">--</div>
+        <div class="hint">Kontrol Motor L298N</div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Protokol: MQTT over Secure WebSocket (WSS) • Topic: <code>untidar/ti24/sgs01/telemetry</code></span>
+    </footer>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/mqtt-service.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
